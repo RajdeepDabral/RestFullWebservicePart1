@@ -16,7 +16,6 @@ public class EmployeeDaoService {
         list.add(new Employee(104,"Neha",29));
         list.add(new Employee(105,"Swati",33));
     }
-
     public List<Employee> getAllEmployee() {
         return list;
     }
@@ -28,11 +27,10 @@ public class EmployeeDaoService {
         }
         return null;
     }
-    public Boolean createEmployee(Employee employee){
+    public Boolean  createEmployee(Employee employee){
         list.add(employee);
         return true;
     }
-
    public Boolean deleteEmployeeById(int id){
        Employee employeeTemp=null;
        Iterator<Employee> iterator = list.iterator();
@@ -57,5 +55,14 @@ public class EmployeeDaoService {
             }
         }
         return  false;
+    }
+
+    public Employee getEmployeeException(int id) throws CustomException {
+        for (Employee employee : list) {
+            if (id == employee.getId()) {
+                return employee;
+            }
+        }
+        throw new CustomException("Record not found");
     }
 }

@@ -9,5 +9,4 @@ public class SpringRestFullServiceQuestionsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringRestFullServiceQuestionsApplication.class, args);
 	}
-
 }

@@ -5,10 +5,12 @@ import dabral.rajdeep.springRestFullServiceQuestions.employee.EmployeeDaoService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-public class ControllerClass {
+public class EmployeeController {
     @Autowired
     private EmployeeDaoService employeeDaoService;
 
@@ -58,6 +60,11 @@ public class ControllerClass {
     /*
     6. Implement Exception Handling for resource not found
     */
+    @GetMapping("/Question6/{id}")
+    public Employee getEmployeeException(@PathVariable int id){
+        return  employeeDaoService.getEmployeeException(id);
+    }
+
 
     /*
     7. Implement DELETE http request for Employee to delete employee
@@ -74,4 +81,19 @@ public class ControllerClass {
     public void updateEmployee(@RequestBody Employee employee){
         System.out.println("Is Employee Updated : "+employeeDaoService.updateEmployee(employee));
     }
+    /*
+    9. Apply validation while create a new employee using POST http Request.
+    */
+    @PostMapping("/Question9")
+    public void createEmployeeWithValidation(@Valid @RequestBody Employee employee){
+        System.out.println("Is Employee Added :  " +employeeDaoService.createEmployee(employee));
+    }
+
+    /*
+    10. Configure actuator in your project to check the health of application and
+        get the information about various beans configured in your application
+    */
+    //   localhost:8080/actuator/health
+    //   localhost:8080/actuator/beans
+
 }

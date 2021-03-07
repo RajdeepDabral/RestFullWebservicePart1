@@ -1,12 +1,20 @@
 package dabral.rajdeep.springRestFullServiceQuestions.employee;
-/*
-Create an Employee Bean(id, name, age) and service to
-        perform different operations related to employee.
 
- */
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Size;
+
+import org.jetbrains.annotations.NotNull;
+
+import javax.validation.constraints.Size;
+
 public class Employee {
+    @NotNull("Id cannot be empty!!!")
     private int id;
+    @NotNull("name cannot be empty!!!")
+    @Size(min=2)
     private String name;
+    @NotNull("age cannot be empty!!!")
     private int age;
 
     public Employee(int id, String name, int age) {
