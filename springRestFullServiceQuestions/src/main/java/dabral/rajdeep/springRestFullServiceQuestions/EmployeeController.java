@@ -69,7 +69,7 @@ public class EmployeeController {
     /*
     7. Implement DELETE http request for Employee to delete employee
     */
-    @GetMapping("/Question7/{id}")
+    @DeleteMapping("/Question7/{id}")
     public void deleteEmployeeById(@PathVariable int id){
         System.out.println("Is Employee Deleted : "+employeeDaoService.deleteEmployeeById(id));
     }
@@ -77,7 +77,7 @@ public class EmployeeController {
     /*
     8. Implement PUT http request for Employee to update employee
     */
-    @PostMapping("/Question8")
+    @PutMapping("/Question8")
     public void updateEmployee(@RequestBody Employee employee){
         System.out.println("Is Employee Updated : "+employeeDaoService.updateEmployee(employee));
     }
