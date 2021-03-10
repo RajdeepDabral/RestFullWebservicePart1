@@ -27,9 +27,9 @@ public class EmployeeDaoService {
         }
         return null;
     }
-    public Boolean  createEmployee(Employee employee){
+    public Employee  createEmployee(Employee employee){
         list.add(employee);
-        return true;
+        return employee;
     }
    public Boolean deleteEmployeeById(int id){
        Employee employeeTemp=null;
@@ -41,7 +41,7 @@ public class EmployeeDaoService {
                return true;
            }
        }
-       return false;
+       throw new UserNotFoundException("Record not found");
    }
 
     public boolean updateEmployee(Employee employee) {
@@ -57,12 +57,12 @@ public class EmployeeDaoService {
         return  false;
     }
 
-    public Employee getEmployeeException(int id) throws CustomException {
+    public Employee getEmployeeException(int id) throws UserNotFoundException {
         for (Employee employee : list) {
             if (id == employee.getId()) {
                 return employee;
             }
         }
-        throw new CustomException("Record not found");
+        throw new UserNotFoundException("Record not found");
     }
 }

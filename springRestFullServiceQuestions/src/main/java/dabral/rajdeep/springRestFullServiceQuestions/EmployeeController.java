@@ -3,11 +3,16 @@ package dabral.rajdeep.springRestFullServiceQuestions;
 import dabral.rajdeep.springRestFullServiceQuestions.employee.Employee;
 import dabral.rajdeep.springRestFullServiceQuestions.employee.EmployeeDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
+
+import static org.springframework.http.ResponseEntity.created;
 
 @RestController
 public class EmployeeController {
@@ -53,8 +58,13 @@ public class EmployeeController {
     5. Implement POST http request for Employee to create a new employee.
     */
     @PostMapping("/Question5")
-    public void createEmployee(@RequestBody Employee employee){
-        System.out.println("Is Employee Added :  " +employeeDaoService.createEmployee(employee));
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
+        Employee employeeTemp =employeeDaoService.createEmployee(employee);
+        URI location=ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(employeeTemp.getId()).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     /*
